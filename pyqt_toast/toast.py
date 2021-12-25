@@ -13,18 +13,20 @@ class Toast(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.SubWindow | Qt.WindowStaysOnTopHint)
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
-        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEE; padding: 2px; }')
-        self.__lbl.setMaximumWidth(200)
+        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEE; padding: 5px; }')
+        self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width()*2))
+        self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height()*2)
         self.__lbl.setWordWrap(True)
 
         lay = QHBoxLayout()
         lay.addWidget(self.__lbl)
+        lay.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
         self.setStyleSheet('QWidget { background: #444; border-radius: 5px; }')
         self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.5))
 
-        size = self.__lbl.sizeHint()
-        self.setFixedSize(size.width()*1.8, size.height()*1.4)
+        self.setMinimumWidth(self.__lbl.sizeHint().width()*2)
+        self.setMinimumHeight(self.__lbl.sizeHint().height()*2)
         self.setLayout(lay)
 
     def __initTimeout(self, close_sec):
