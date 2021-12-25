@@ -29,7 +29,9 @@ class ToastExample(QWidget):
         lay.addWidget(btn)
         self.setLayout(lay)
 
+    # You have to add this
     def __showToast(self):
+        # Prevent it showing same toast multiple times
         if self.__toast:
             if self.__toast.isVisible():
                 pass
@@ -38,9 +40,11 @@ class ToastExample(QWidget):
         else:
             self.__toast = Toast(text='Bar', close_sec=3,
                                  parent=self)
-            self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30))
+            # Place the toast slightly bottom of the center of window
+            self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30)) 
             self.__toast.show()
-
+    
+    # You have to add this (This helps the toast maintain the place after window get resized)
     def resizeEvent(self, e):
         if self.__toast:
             self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30))
