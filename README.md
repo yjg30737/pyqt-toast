@@ -60,6 +60,7 @@ Result
 
 https://user-images.githubusercontent.com/55078043/147375506-a198ac4e-3f1c-4e1d-83ad-b456bf12eb38.mp4
 
+## Note
 
-
+Sorry for the ugly code. (__showToast, resizeEvent) I'm really tired so i will deal with that later.
 
