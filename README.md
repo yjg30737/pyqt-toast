@@ -23,31 +23,20 @@ from pyqt_toast import Toast
 class ToastExample(QWidget):
     def __init__(self):
         super().__init__()
-        self.__toast = ''
         self.__initUi()
 
     def __initUi(self):
-        btn = QPushButton('Foo')
+        btn = QPushButton('Krabby Patty secret formula')
+        self.__toast = Toast(text='''The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.''', close_sec=3, parent=self)
         btn.clicked.connect(self.__showToast)
         lay = QGridLayout()
         lay.addWidget(btn)
         self.setLayout(lay)
 
-    # You have to add this
     def __showToast(self):
-        # Prevent it showing same toast multiple times
-        if self.__toast:
-            if self.__toast.isVisible():
-                pass
-            else:
-                self.__toast.show()
-        else:
-            self.__toast = Toast(text='Bar', close_sec=3,
-                                 parent=self)
-            # Place the toast slightly bottom of the center of window
-            self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30)) 
-            self.__toast.show()
-    
+        self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30))
+        self.__toast.show()
+        
     # You have to add this (This helps the toast maintain the place after window get resized)
     def resizeEvent(self, e):
         if self.__toast:
@@ -66,9 +55,7 @@ if __name__ == "__main__":
 
 Result
 
-https://user-images.githubusercontent.com/55078043/147375506-a198ac4e-3f1c-4e1d-83ad-b456bf12eb38.mp4
+https://user-images.githubusercontent.com/55078043/147397822-fdd709a6-fac0-41aa-8c73-8afa9b920975.mp4
 
-## Note
 
-Sorry for the ugly code. (__showToast, resizeEvent) I'm really tired so i will deal with that later.
 
