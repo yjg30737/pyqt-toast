@@ -5,8 +5,7 @@ PyQt Toast (Small message displayed on the screen, visible for a short time)
 PyQt5 >= 5.8
 
 ## Setup (v0.1.0)
-```pip3 install git+https://github.com/yjg30737/pyqt-toast.git@0.1.0 --upgrade
-```
+```pip3 install git+https://github.com/yjg30737/pyqt-toast.git@0.1.0 --upgrade```
 
 ## Usage
 * ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved.
