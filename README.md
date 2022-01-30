@@ -27,21 +27,11 @@ class ToastExample(QWidget):
 
     def __initUi(self):
         btn = QPushButton('Krabby Patty secret formula')
-        self.__toast = Toast(text='''The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.''', close_sec=3, parent=self)
-        btn.clicked.connect(self.__showToast)
+        self.__toast = Toast(text='The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.', close_sec=3, parent=self)
+        btn.clicked.connect(self.__toast.show)
         lay = QGridLayout()
         lay.addWidget(btn)
         self.setLayout(lay)
-
-    def __showToast(self):
-        self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30))
-        self.__toast.show()
-        
-    # You have to add this (This helps the toast maintain the place after window get resized)
-    def resizeEvent(self, e):
-        if self.__toast:
-            self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y()+30))
-        return super().resizeEvent(e)
 
 
 if __name__ == "__main__":
