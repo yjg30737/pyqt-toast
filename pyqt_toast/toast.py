@@ -6,7 +6,6 @@ class Toast(QWidget):
     def __init__(self, text, close_sec=2, parent=None):
         super().__init__(parent)
         self.__parent = parent
-        self.__parent.resizeEvent = self.resizeEvent
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
         self.__initUi(text)
@@ -72,7 +71,3 @@ class Toast(QWidget):
             self.raise_()
             self.__initTimeout(self.__close_sec)
         return super().show()
-
-    def resizeEvent(self, e):
-        self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
-        return super().resizeEvent(e)
