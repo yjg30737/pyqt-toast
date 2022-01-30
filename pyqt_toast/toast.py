@@ -71,3 +71,7 @@ class Toast(QWidget):
             self.raise_()
             self.__initTimeout(self.__close_sec)
         return super().show()
+
+    def resizeEvent(self, e):
+        self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
+        return super().resizeEvent(e)
