@@ -1,11 +1,12 @@
 from PyQt5.QtWidgets import QLabel, QWidget, QHBoxLayout, QGraphicsOpacityEffect
-from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QAbstractAnimation
+from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QAbstractAnimation, QPoint
 
 
 class Toast(QWidget):
     def __init__(self, text, close_sec=2, parent=None):
         super().__init__(parent)
         self.__parent = parent
+        self.__parent.resizeEvent = self.resizeEvent
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
         self.__initUi(text)
@@ -17,8 +18,8 @@ class Toast(QWidget):
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
         self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEE; padding: 5px; }')
-        self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width()*2))
-        self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height()*2)
+        self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
+        self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
 
         self.__animation = QPropertyAnimation(self, b"opacity")
@@ -35,8 +36,8 @@ class Toast(QWidget):
 
         self.setStyleSheet('QWidget { background: #444; border-radius: 5px; }')
 
-        self.setFixedWidth(self.__lbl.sizeHint().width()*2)
-        self.setFixedHeight(self.__lbl.sizeHint().height()*2)
+        self.setFixedWidth(self.__lbl.sizeHint().width() * 2)
+        self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
         self.setLayout(lay)
 
     def __setOpacity(self, opacity):
@@ -71,3 +72,7 @@ class Toast(QWidget):
             self.raise_()
             self.__initTimeout(self.__close_sec)
         return super().show()
+
+    def resizeEvent(self, e):
+        self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
+        return super().resizeEvent(e)
