@@ -8,7 +8,9 @@ PyQt5 >= 5.8
 ```pip3 install git+https://github.com/yjg30737/pyqt-toast.git@0.1.0 --upgrade```
 
 ## Usage
-* ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved.
+* ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
+
+<b>Note:</b> You have to declare this one time as a class variable at initializing point(e.g. ```__initUi```) or else new one will pop up even though last one is still showing.
 * ```setPosition(pos: QPoint)``` - Place center of the toast at the given position.
 
 ## Example (v0.1.0)
