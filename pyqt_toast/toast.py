@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QLabel, QWidget, QHBoxLayout, QGraphicsOpacityEffect
 from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QAbstractAnimation, QPoint
+from PyQt5.QtGui import QFont
 
 
 class Toast(QWidget):
@@ -35,8 +36,7 @@ class Toast(QWidget):
 
         self.setStyleSheet('QWidget { background: #444; border-radius: 5px; }')
 
-        self.setFixedWidth(self.__lbl.sizeHint().width() * 2)
-        self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
+        self.__setToastSizeBasedOnTextSize()
         self.setLayout(lay)
 
     def __setOpacity(self, opacity):
@@ -78,3 +78,11 @@ class Toast(QWidget):
     def resizeEvent(self, e):
         self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
         return super().resizeEvent(e)
+
+    def setFont(self, font: QFont):
+        self.__lbl.setFont(font)
+        self.__setToastSizeBasedOnTextSize()
+
+    def __setToastSizeBasedOnTextSize(self):
+        self.setFixedWidth(self.__lbl.sizeHint().width() * 2)
+        self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
