@@ -9,6 +9,9 @@ class Toast(QWidget):
         self.__parent = parent
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
+        self.__label_default_color_on_style = QColor('#EEE')
+        self.__label_default_style = f'QLabel#popupLbl {{ color: {self.__label_default_color_on_style.name()}; ' \
+                                     f'padding: 5px; }}'
         self.__initUi(text)
 
     def __initUi(self, text):
@@ -17,7 +20,7 @@ class Toast(QWidget):
 
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
-        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEE; padding: 5px; }')
+        self.__lbl.setStyleSheet(self.__label_default_style)
         self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
@@ -88,4 +91,8 @@ class Toast(QWidget):
         self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
 
     def setForegroundColor(self, color: QColor):
-        self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {color.name()}; padding: 5px; }}')
+        self.__lbl.setStyleSheet(self.__getColoredLabelStyle(color))
+
+    def __getColoredLabelStyle(self, color: QColor):
+        self.__label_default_color_on_style = color
+        return self.__label_default_style.format(self.__label_default_color_on_style.name())
