@@ -13,6 +13,7 @@ PyQt5 >= 5.8
 <b>Note:</b> You have to declare this one time as a class variable at initializing point(e.g. ```__initUi```) or else new one will pop up even though last one is still showing.
 * ```setPosition(pos: QPoint)``` - Place center of the toast at the given position.
 * ```setFont(font: QFont)``` - Set the font of text in toast. Toast's size will be automatically changed based on text's size.
+* ```setForegroundColor(color: QColor)``` - Set the text(foreground) color.
 
 ## Example (v0.1.0)
 Code Sample
