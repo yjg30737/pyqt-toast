@@ -7,6 +7,7 @@ class Toast(QWidget):
     def __init__(self, text, close_sec=2, parent=None):
         super().__init__(parent)
         self.__parent = parent
+        self.__parent.installEventFilter(self)
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
         self.__initUi(text)
