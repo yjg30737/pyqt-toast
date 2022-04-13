@@ -75,10 +75,6 @@ class Toast(QWidget):
     def isVisible(self) -> bool:
         return self.__timer.isActive()
 
-    def resizeEvent(self, e):
-        self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
-        return super().resizeEvent(e)
-
     def setFont(self, font: QFont):
         self.__lbl.setFont(font)
         self.__setToastSizeBasedOnTextSize()
@@ -89,3 +85,8 @@ class Toast(QWidget):
 
     def setForegroundColor(self, color: QColor):
         self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {color.name()}; padding: 5px; }}')
+
+    def eventFilter(self, obj, e) -> bool:
+        if e.type() == 14:
+            self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
+        return super().eventFilter(obj, e)
