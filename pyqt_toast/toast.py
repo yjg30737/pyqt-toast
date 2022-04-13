@@ -85,6 +85,8 @@ class Toast(QWidget):
         self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
 
     def setForegroundColor(self, color: QColor):
+        if isinstance(color, str):
+            color = QColor(color)
         self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {color.name()}; padding: 5px; }}')
 
     def eventFilter(self, obj, e) -> bool:
