@@ -13,12 +13,11 @@ PyQt5 >= 5.8
 <b>Note:</b> You have to declare this one time as a class variable at initializing point(e.g. ```__initUi```) or else new one will pop up even though last one is still showing.
 * ```setPosition(pos: QPoint)``` - Place center of the toast at the given position.
 * ```setFont(font: QFont)``` - Set the font of text in toast. Toast's size will be automatically changed based on text's size.
-* ```setForegroundColor(color: QColor)``` - Set the text(foreground) color.
+* ```setForegroundColor(color)``` - Set the text(foreground) color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 
 ## Example (v0.1.0)
 Code Sample
 ```python
-from PyQt5.QtCore import QPoint
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QGridLayout
 
 from pyqt_toast import Toast
@@ -32,20 +31,11 @@ class ToastExample(QWidget):
     def __initUi(self):
         btn = QPushButton('Krabby Patty secret formula')
         self.__toast = Toast(text='The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.', close_sec=3, parent=self)
-        btn.clicked.connect(self.__showToast)
+        btn.clicked.connect(self.__toast.show)
         lay = QGridLayout()
         lay.addWidget(btn)
         self.setLayout(lay)
 
-    def __showToast(self):
-        self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y() + 30))
-        self.__toast.show()
-
-    # You have to add this (This helps the toast maintain the place after window get resized)
-    def resizeEvent(self, e):
-        if self.__toast:
-            self.__toast.setPosition(QPoint(self.rect().center().x(), self.rect().center().y() + 30))
-        return super().resizeEvent(e)
 
 if __name__ == "__main__":
     import sys
