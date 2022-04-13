@@ -18,7 +18,7 @@ class Toast(QWidget):
 
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
-        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEE; padding: 5px; }')
+        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEEEEE; padding: 5px; }')
         self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
@@ -35,7 +35,7 @@ class Toast(QWidget):
         lay.addWidget(self.__lbl)
         lay.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
-        self.setStyleSheet('QWidget { background: #444; border-radius: 5px; }')
+        self.setStyleSheet('QWidget { background: #444444; border-radius: 5px; }')
 
         self.__setToastSizeBasedOnTextSize()
         self.setLayout(lay)
