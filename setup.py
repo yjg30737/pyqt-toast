@@ -7,7 +7,7 @@ setup(
     author_email='yjg30737@gmail.com',
     license='MIT',
     packages=find_packages(),
-    package_data={'pyqt_toast': ['background.css', 'foreground.css']},
+    package_data={'pyqt_toast.style': ['background.css', 'foreground.css']},
     description='PyQt Toast (Small message displayed on the screen, visible for a short time)',
     url='https://github.com/yjg30737/pyqt-toast.git',
     install_requires=[
