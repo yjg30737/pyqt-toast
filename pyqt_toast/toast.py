@@ -23,21 +23,24 @@ class Toast(QWidget):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.SubWindow)
         self.setAttribute(Qt.WA_TransparentForMouseEvents, True)
 
+        # text in toast (toast foreground)
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
         PyQtResourceHelper.setStyleSheet([self.__lbl], ['style/foreground.css'])
+
         self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
 
+        # animation
         self.__initAnimation()
 
+        # toast background
         lay = QHBoxLayout()
         lay.addWidget(self.__lbl)
         lay.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
         PyQtResourceHelper.setStyleSheet([self], ['style/background.css'])
-
         self.__setToastSizeBasedOnTextSize()
         self.setLayout(lay)
 
