@@ -9,8 +9,10 @@ class Toast(QWidget):
         super().__init__(parent)
         self.__parent = parent
         self.__parent.installEventFilter(self)
+        self.installEventFilter(self)
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
+        self.__backgroundColor = ''
         self.__initUi(text)
 
     def __initUi(self, text):
@@ -90,7 +92,18 @@ class Toast(QWidget):
             color = QColor(color)
         self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {color.name()}; padding: 5px; }}')
 
+    def setBackgroundColor(self, color: QColor):
+        if isinstance(color, str):
+            color = QColor(color)
+        self.__backgroundColor = color
+
+    def __setBackgroundColor(self):
+        self.setStyleSheet(f'QWidget {{ background-color: {self.__backgroundColor.name()}; border-radius: 5px; }}')
+
     def eventFilter(self, obj, e) -> bool:
         if e.type() == 14:
             self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
+        elif isinstance(obj, Toast):
+            if e.type() == 75:
+                self.__setBackgroundColor()
         return super().eventFilter(obj, e)
