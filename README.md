@@ -14,9 +14,10 @@ PyQt5 >= 5.8
 * ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
 
 <b>Note:</b> You have to declare this one time as a class variable at initializing point(e.g. ```__initUi```) or else new one will pop up even though last one is still showing.
-* ```setPosition(pos: QPoint)``` - Place center of the toast at the given position.
-* ```setFont(font: QFont)``` - Set the font of text in toast. Toast's size will be automatically changed based on text's size.
-* ```setForegroundColor(color)``` - Set the text(foreground) color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
+* `setPosition(pos: QPoint)` - Place center of the toast at the given position.
+* `setFont(font: QFont)` - Set the font of text in toast. Toast's size will be automatically changed based on text's size.
+* `setForegroundColor(color)` - Set the text(foreground) color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
+* `setBackgroundColor(color)` - Set the background color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 
 ## Example (v0.1.0)
 Code Sample
