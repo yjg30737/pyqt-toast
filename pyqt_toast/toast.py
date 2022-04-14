@@ -122,5 +122,6 @@ class Toast(QWidget):
             self.setPosition(QPoint(self.__parent.rect().center().x(), self.__parent.rect().center().y()))
         elif isinstance(obj, Toast):
             if e.type() == 75:
+                self.__setForegroundColor()
                 self.__setBackgroundColor()
         return super().eventFilter(obj, e)
