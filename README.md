@@ -18,6 +18,7 @@ PyQt5 >= 5.8
 * `setFont(font: QFont)` - Set the font of text in toast. Toast's size will be automatically changed based on text's size.
 * `setForegroundColor(color)` - Set the text(foreground) color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 * `setBackgroundColor(color)` - Set the background color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
+* `setOpacity(opacity: float)` - Set the opacity of toast.
 
 ## Example (v0.1.0)
 Code Sample
