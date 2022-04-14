@@ -17,6 +17,7 @@ class Toast(QWidget):
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
         self.__opacity = 0.5
+        self.__foregroundColor = '#EEEEEE'
         self.__backgroundColor = '#444444'
 
     def __initUi(self, text):
@@ -99,12 +100,15 @@ class Toast(QWidget):
     def setForegroundColor(self, color: QColor):
         if isinstance(color, str):
             color = QColor(color)
-        self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {color.name()}; padding: 5px; }}')
+        self.__foregroundColor = color.name()
 
     def setBackgroundColor(self, color: QColor):
         if isinstance(color, str):
             color = QColor(color)
         self.__backgroundColor = color.name()
+
+    def __setForegroundColor(self):
+        self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {self.__foregroundColor}; padding: 5px; }}')
 
     def __setBackgroundColor(self):
         self.setStyleSheet(f'QWidget {{ background-color: {self.__backgroundColor}; border-radius: 5px; }}')
