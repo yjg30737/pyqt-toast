@@ -11,7 +11,7 @@ PyQt5 >= 5.8
 * <a href="https://github.com/yjg30737/pyqt-resource-helper">pyqt-resource-helper</a>
 
 ## Usage
-* ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
+* ```Toast(text='This is toast', duration=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
 
 <b>Note:</b> You have to declare this one time as a class variable at initializing point(e.g. ```__initUi```) or else new one will pop up even though last one is still showing.
 * `setPosition(pos: QPoint)` - Place center of the toast at the given position.
@@ -19,6 +19,7 @@ PyQt5 >= 5.8
 * `setForegroundColor(color)` - Set the text(foreground) color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 * `setBackgroundColor(color)` - Set the background color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 * `setOpacity(opacity: float)` - Set the opacity of toast.
+* `setDuration(duration: int)` - Set the duration of toast.
 
 ## Example (v0.1.0)
 Code Sample
@@ -35,7 +36,7 @@ class ToastExample(QWidget):
 
     def __initUi(self):
         btn = QPushButton('Krabby Patty secret formula')
-        self.__toast = Toast(text='The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.', close_sec=3, parent=self)
+        self.__toast = Toast(text='The Krabby Patty formula is the sole property of the Krusty Krab and is only to be discussed in part or in whole with its creator Mr. Krabs. Duplication of this formula is punishable by law. Restrictions apply, results may vary.', duration=3, parent=self)
         btn.clicked.connect(self.__toast.show)
         lay = QGridLayout()
         lay.addWidget(btn)
