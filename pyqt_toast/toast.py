@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QLabel, QWidget, QHBoxLayout, QGraphicsOpacityEffect
 from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QAbstractAnimation, QPoint
 from PyQt5.QtGui import QFont, QColor
+from pyqt_resource_helper import PyQtResourceHelper
 
 
 class Toast(QWidget):
@@ -18,7 +19,7 @@ class Toast(QWidget):
 
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
-        self.__lbl.setStyleSheet('QLabel#popupLbl { color: #EEEEEE; padding: 5px; }')
+        PyQtResourceHelper.setStyleSheet([self.__lbl], ['style/foreground.css'])
         self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
@@ -35,7 +36,7 @@ class Toast(QWidget):
         lay.addWidget(self.__lbl)
         lay.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
-        self.setStyleSheet('QWidget { background: #444444; border-radius: 5px; }')
+        PyQtResourceHelper.setStyleSheet([self], ['style/background.css'])
 
         self.__setToastSizeBasedOnTextSize()
         self.setLayout(lay)
