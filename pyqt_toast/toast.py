@@ -7,6 +7,10 @@ from pyqt_resource_helper import PyQtResourceHelper
 class Toast(QWidget):
     def __init__(self, text, close_sec=2, parent=None):
         super().__init__(parent)
+        self.__initVal(parent, close_sec)
+        self.__initUi(text)
+
+    def __initVal(self, parent, close_sec):
         self.__parent = parent
         self.__parent.installEventFilter(self)
         self.installEventFilter(self)
@@ -14,7 +18,6 @@ class Toast(QWidget):
         self.__close_sec = close_sec
         self.__opacity = 0.5
         self.__backgroundColor = '#444444'
-        self.__initUi(text)
 
     def __initUi(self, text):
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.SubWindow)
