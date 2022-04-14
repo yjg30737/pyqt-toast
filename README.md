@@ -21,7 +21,7 @@ PyQt5 >= 5.8
 * `setOpacity(opacity: float)` - Set the opacity of toast.
 * `setDuration(duration: int)` - Set the duration of toast.
 
-## Example (v0.1.0)
+## Example
 Code Sample
 ```python
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QGridLayout
