@@ -27,12 +27,7 @@ class Toast(QWidget):
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
         self.__lbl.setWordWrap(True)
 
-        self.__animation = QPropertyAnimation(self, b"opacity")
-        self.__animation.setStartValue(0.0)
-        self.__animation.setDuration(200)
-        self.__animation.setEndValue(self.__opacity)
-        self.__animation.valueChanged.connect(self.__setOpacity)
-        self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.0))
+        self.__initAnimation()
 
         lay = QHBoxLayout()
         lay.addWidget(self.__lbl)
@@ -46,6 +41,14 @@ class Toast(QWidget):
     def __setOpacity(self, opacity):
         opacity_effect = QGraphicsOpacityEffect(opacity=opacity)
         self.setGraphicsEffect(opacity_effect)
+
+    def __initAnimation(self):
+        self.__animation = QPropertyAnimation(self, b"opacity")
+        self.__animation.setStartValue(0.0)
+        self.__animation.setDuration(200)
+        self.__animation.setEndValue(self.__opacity)
+        self.__animation.valueChanged.connect(self.__setOpacity)
+        self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.0))
 
     def __initTimeout(self, close_sec):
         self.__timer = QTimer(self)
@@ -102,6 +105,7 @@ class Toast(QWidget):
 
     def setOpacity(self, opacity: float):
         self.__opacity = opacity
+        self.__initAnimation()
 
     def eventFilter(self, obj, e) -> bool:
         if e.type() == 14:
