@@ -5,17 +5,17 @@ from pyqt_resource_helper import PyQtResourceHelper
 
 
 class Toast(QWidget):
-    def __init__(self, text, close_sec=2, parent=None):
+    def __init__(self, text, duration=2, parent=None):
         super().__init__(parent)
-        self.__initVal(parent, close_sec)
+        self.__initVal(parent, duration)
         self.__initUi(text)
 
-    def __initVal(self, parent, close_sec):
+    def __initVal(self, parent, duration):
         self.__parent = parent
         self.__parent.installEventFilter(self)
         self.installEventFilter(self)
         self.__timer = QTimer(self)
-        self.__close_sec = close_sec
+        self.__duration = duration
         self.__opacity = 0.5
         self.__foregroundColor = '#EEEEEE'
         self.__backgroundColor = '#444444'
@@ -57,9 +57,9 @@ class Toast(QWidget):
         self.__animation.valueChanged.connect(self.__setOpacity)
         self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.0))
 
-    def __initTimeout(self, close_sec):
+    def __initTimeout(self):
         self.__timer = QTimer(self)
-        self.__timer_to_wait = close_sec
+        self.__timer_to_wait = self.__duration
         self.__timer.setInterval(1000)
         self.__timer.timeout.connect(self.__changeContent)
         self.__timer.start()
@@ -83,7 +83,7 @@ class Toast(QWidget):
             self.__animation.setDirection(QAbstractAnimation.Forward)
             self.__animation.start()
             self.raise_()
-            self.__initTimeout(self.__close_sec)
+            self.__initTimeout()
         return super().show()
 
     def isVisible(self) -> bool:
@@ -96,6 +96,10 @@ class Toast(QWidget):
     def __setToastSizeBasedOnTextSize(self):
         self.setFixedWidth(self.__lbl.sizeHint().width() * 2)
         self.setFixedHeight(self.__lbl.sizeHint().height() * 2)
+
+    def setDuration(self, duration: int):
+        self.__duration = duration
+        self.__initAnimation()
 
     def setForegroundColor(self, color: QColor):
         if isinstance(color, str):
