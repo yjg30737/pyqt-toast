@@ -12,7 +12,8 @@ class Toast(QWidget):
         self.installEventFilter(self)
         self.__timer = QTimer(self)
         self.__close_sec = close_sec
-        self.__backgroundColor = ''
+        self.__opacity = 0.5
+        self.__backgroundColor = '#444444'
         self.__initUi(text)
 
     def __initUi(self, text):
@@ -29,9 +30,8 @@ class Toast(QWidget):
         self.__animation = QPropertyAnimation(self, b"opacity")
         self.__animation.setStartValue(0.0)
         self.__animation.setDuration(200)
-        self.__animation.setEndValue(0.5)
+        self.__animation.setEndValue(self.__opacity)
         self.__animation.valueChanged.connect(self.__setOpacity)
-
         self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.0))
 
         lay = QHBoxLayout()
@@ -95,10 +95,13 @@ class Toast(QWidget):
     def setBackgroundColor(self, color: QColor):
         if isinstance(color, str):
             color = QColor(color)
-        self.__backgroundColor = color
+        self.__backgroundColor = color.name()
 
     def __setBackgroundColor(self):
-        self.setStyleSheet(f'QWidget {{ background-color: {self.__backgroundColor.name()}; border-radius: 5px; }}')
+        self.setStyleSheet(f'QWidget {{ background-color: {self.__backgroundColor}; border-radius: 5px; }}')
+
+    def setOpacity(self, opacity: float):
+        self.__opacity = opacity
 
     def eventFilter(self, obj, e) -> bool:
         if e.type() == 14:
