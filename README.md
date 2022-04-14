@@ -7,6 +7,9 @@ PyQt5 >= 5.8
 ## Setup
 ```pip3 install git+https://github.com/yjg30737/pyqt-toast.git --upgrade```
 
+## Included Packages
+* <a href="https://github.com/yjg30737/pyqt-resource-helper">pyqt-resource-helper</a>
+
 ## Usage
 * ```Toast(text='This is toast', close_sec=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
 
