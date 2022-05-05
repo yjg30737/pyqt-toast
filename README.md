@@ -5,7 +5,7 @@ PyQt Toast (Small message displayed on the screen, visible for a short time)
 PyQt5 >= 5.8
 
 ## Setup
-```pip3 install git+https://github.com/yjg30737/pyqt-toast.git --upgrade```
+`pip3 install pyqt-toast`
 
 ## Included Packages
 * <a href="https://github.com/yjg30737/pyqt-resource-helper">pyqt-resource-helper</a>
