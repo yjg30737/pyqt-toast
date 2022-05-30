@@ -1,20 +1,3 @@
-"""
-====================================
- :mod:`Toast` - toast
-====================================
-.. note:: This documentation is not completed.
-
-Description
-==============
-
-PyQt Toast.
-
-Revision History
--------------------
-
- * [2022-05-04] - v0.0.1 make very basic documentation
-"""
-
 from PyQt5.QtWidgets import QLabel, QWidget, QHBoxLayout, QGraphicsOpacityEffect
 from PyQt5.QtCore import Qt, QTimer, QPropertyAnimation, QAbstractAnimation, QPoint
 from PyQt5.QtGui import QFont, QColor
@@ -23,7 +6,6 @@ from pyqt_resource_helper import PyQtResourceHelper
 
 
 class Toast(QWidget):
-    """This is the Toast."""
     def __init__(self, text, duration=2, parent=None):
         super().__init__(parent)
         self.__initVal(parent, duration)
@@ -90,13 +72,11 @@ class Toast(QWidget):
             self.__animation.start()
             self.__timer.stop()
 
-    """This is the setPosition."""
     def setPosition(self, pos):
         geo = self.geometry()
         geo.moveCenter(pos)
         self.setGeometry(geo)
 
-    """This is the show."""
     def show(self):
         if self.__timer.isActive():
             pass
