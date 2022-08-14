@@ -20,6 +20,7 @@ PyQt5 >= 5.8
 * `setBackgroundColor(color)` - Set the background color. `color` argument can be both `str`(6-digits hex color string), `QColor` types.
 * `setOpacity(opacity: float)` - Set the opacity of toast.
 * `setDuration(duration: int)` - Set the duration of toast.
+* `setAlignment(alignment)` - Set the alignment of text.
 
 ## Example
 Code Sample
