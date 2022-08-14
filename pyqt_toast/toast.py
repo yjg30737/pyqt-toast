@@ -77,6 +77,9 @@ class Toast(QWidget):
         geo.moveCenter(pos)
         self.setGeometry(geo)
 
+    def setAlignment(self, alignment):
+        self.__lbl.setAlignment(alignment)
+
     def show(self):
         if self.__timer.isActive():
             pass
