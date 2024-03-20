@@ -2,13 +2,10 @@
 PyQt Toast (Small message displayed on the screen, visible for a short time)
 
 ## Requirements
-PyQt5 >= 5.8
+PyQt5 >= 5.14
 
 ## Setup
 `python -m pip install pyqt-toast`
-
-## Included Packages
-* <a href="https://github.com/yjg30737/pyqt-resource-helper">pyqt-resource-helper</a>
 
 ## Usage
 * ```Toast(text='This is toast', duration=3, parent=self)``` - Constructor. Giving ```parent``` argument to ```self``` value helps toast to maintain its place after window got moved. 
