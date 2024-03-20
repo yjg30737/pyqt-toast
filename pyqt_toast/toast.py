@@ -28,7 +28,7 @@ class Toast(QWidget):
         # text in toast (toast foreground)
         self.__lbl = QLabel(text)
         self.__lbl.setObjectName('popupLbl')
-        PyQtResourceHelper.setStyleSheet([self.__lbl], ['style/foreground.css'])
+        self.__lbl.setStyleSheet(f'QLabel#popupLbl {{ color: {self.__foregroundColor}; padding: 5px; }}')
 
         self.__lbl.setMinimumWidth(min(200, self.__lbl.fontMetrics().boundingRect(text).width() * 2))
         self.__lbl.setMinimumHeight(self.__lbl.fontMetrics().boundingRect(text).height() * 2)
@@ -42,7 +42,7 @@ class Toast(QWidget):
         lay.addWidget(self.__lbl)
         lay.setAlignment(Qt.AlignCenter | Qt.AlignVCenter)
 
-        PyQtResourceHelper.setStyleSheet([self], ['style/background.css'])
+        self.setStyleSheet(f'QWidget {{ background-color: {self.__backgroundColor}; border-radius: 5px; }}')
         self.__setToastSizeBasedOnTextSize()
         self.setLayout(lay)
 
@@ -51,9 +51,9 @@ class Toast(QWidget):
         self.setGraphicsEffect(opacity_effect)
 
     def __initAnimation(self):
-        self.__animation = QPropertyAnimation(self, b"opacity")
-        self.__animation.setStartValue(0.0)
+        self.__animation = QPropertyAnimation(self, b"windowOpacity")
         self.__animation.setDuration(200)
+        self.__animation.setStartValue(0.0)
         self.__animation.setEndValue(self.__opacity)
         self.__animation.valueChanged.connect(self.__setOpacity)
         self.setGraphicsEffect(QGraphicsOpacityEffect(opacity=0.0))
