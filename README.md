@@ -1,6 +1,9 @@
 # pyqt-toast
 PyQt Toast (Small message displayed on the screen, visible for a short time)
 
+## Help Wanted
+If you are good at PyQt, i kindly ask you to make setDuration work :) 
+
 ## Requirements
 PyQt5 >= 5.14
 
